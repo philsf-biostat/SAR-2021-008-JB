@@ -33,7 +33,7 @@ Análise Estatística para José Brites-Neto (SMS Americana/SP, 2021)
 Esta análise está incluída no portfólio do consultor.
 Outras análises também podem ser vistas em:
 
-https://philsf-biostat.github.io/
+<https://philsf-biostat.github.io/>
 
 <!-- --- -->
 
