@@ -1,5 +1,5 @@
 ---
-title: "Plano Analítico para [title]"
+title: "Plano Analítico para Prognóstico de sobrevida em cativeiro de Tityus bahiensis capturados em Americana/SP"
 subtitle: 'DOCUMENTO: SAP-2021-008-JB-v01'
 author: '**De:** Felipe Figueiredo **Para:** José Brites-Neto'
 # date: yyyy-mm-dd
@@ -36,7 +36,7 @@ panderOptions('table.split.table', 160)
 
 ---
 
-[title]
+Prognóstico de sobrevida em cativeiro de Tityus bahiensis capturados em Americana/SP
 
 **Histórico do documento**
 
@@ -62,6 +62,8 @@ kable(history)
 # Contexto
 
 ## Objetivos
+
+Determinar o tempo de sobrevida em cativeiro de espécimes capturados pelo programa de Vigilância Epidemiológica da SMS de Americana/SP.
 
 ## Hipóteses
 
@@ -137,32 +139,6 @@ bicaudais.
 
 ## Tamanho da amostra e Poder
 
-```{r}
-n <- analytical %>%
-  count(group) %>%
-  pull(n)
-n1 <- n[1]
-n2 <- n[2]
-total <- sum(n)
-d <- pwr::pwr.t2n.test(n1 = n1, n2 = n2, power = .8, sig.level = .05)$d %>%
-  format.float()
-d <- pwr::pwr.t.test(n = total/2, power = .8, sig.level = .05)$d %>%
-  format.float()
-```
-
-<!-- Os grupos de estudo eram balanceados e o tamanho total da amostra foi `r total` incluindo todos os grupos. -->
-
-<!-- Os grupos do estudo não eram balanceados com -->
-<!-- `r n1` participantes no grupo1 -->
-<!-- e -->
-<!-- `r n2` participantes no grupo2 -->
-<!-- e um total amostral de `r total`. -->
-<!-- Esta análise de poder ajusta para os diferentes tamanhos dos grupos. -->
-
-<!-- Com estes tamanhos amostrais um teste t pode detectar um tamanho de efeito tão grande quanto -->
-<!-- **d = `r d`** -->
-<!-- com poder estatísticod e 80% e um nível de significância de 5% (Cohen, 1988). -->
-
 N/A
 
 ## Softwares utilizados
@@ -177,7 +153,7 @@ Esta análise será realizada utilizando-se o software `R` versão `r getRversio
 
 # Referências
 
-- **SAR-2021-008-JB-v01** -- [title]
+- **SAR-2021-008-JB-v01** -- Prognóstico de sobrevida em cativeiro de Tityus bahiensis capturados em Americana/SP
 <!-- - Cohen, J. (1988). Statistical power analysis for the behavioral sciences (2nd Ed.). New York: Routledge. -->
 
 # Apêndice

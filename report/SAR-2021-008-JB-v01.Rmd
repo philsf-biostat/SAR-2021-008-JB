@@ -1,5 +1,5 @@
 ---
-title: "[title]"
+title: "Prognóstico de sobrevida em cativeiro de Tityus bahiensis capturados em Americana/SP"
 subtitle: 'DOCUMENTO: SAR-2021-008-JB-v01'
 author: '**De:** Felipe Figueiredo **Para:** José Brites-Neto'
 # date: yyyy-mm-dd
@@ -36,7 +36,7 @@ panderOptions('table.split.table', 160)
 
 ---
 
-[title]
+Prognóstico de sobrevida em cativeiro de Tityus bahiensis capturados em Americana/SP
 
 **Histórico do documento**
 
@@ -56,6 +56,8 @@ kable(history)
 # Contexto
 
 ## Objetivos
+
+Determinar o tempo de sobrevida em cativeiro de espécimes capturados pelo programa de Vigilância Epidemiológica da SMS de Americana/SP.
 
 ## Recepção e tratamento dos dados
 
@@ -103,7 +105,7 @@ tab_inf %>%
 
 # Referências
 
-- **SAP-2021-008-JB-v01** -- Plano Analítico para [title]
+- **SAP-2021-008-JB-v01** -- Plano Analítico para Prognóstico de sobrevida em cativeiro de Tityus bahiensis capturados em Americana/SP
 <!-- - Cohen, J. (1988). Statistical power analysis for the behavioral sciences (2nd Ed.). New York: Routledge. -->
 
 # Apêndice

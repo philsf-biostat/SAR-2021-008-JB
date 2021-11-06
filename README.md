@@ -1,21 +1,13 @@
-<!-- Instruções -->
+# Prognóstico de sobrevida em cativeiro de Tityus bahiensis capturados em Americana/SP
 
-<!-- - substituir yyyy-NNN-XX -->
-<!-- - v01: substituir mmm01/mmm02 pela milestone -->
-<!-- - v02: substituir ppp01/ppp02 pelo projeto -->
-<!-- - Remover esse bloco -->
+Determinar o tempo de sobrevida em cativeiro de espécimes capturados pelo programa de Vigilância Epidemiológica da SMS de Americana/SP.
 
-# título
-
-Objetivo
-
-Análise Estatística para PESSOA (LOCAL, aaaa)
+Análise Estatística para José Brites-Neto (SMS Americana/SP, 2021)
 
 ## Análises realizadas
 
 1. Análise descritiva
 1. Análise inferencial
-1. Análise de poder
 1. Modelagem estatística
 
 ## Documentos
