@@ -27,11 +27,8 @@ data.raw <- data.raw %>%
   mutate(
     event = 1,
     time = as.duration(interval(entrada, obito))/ddays(),
-    sex = case_when(
-      sex == "fêmea" ~ "F",
-      sex == "macho" ~ "M",
-      TRUE ~ NA_character_
-    ),
+    sex = factor(sex, labels = c("F", "M")),
+    sex = relevel(sex, "M"),
   )
 
 # labels ------------------------------------------------------------------
