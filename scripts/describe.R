@@ -26,7 +26,7 @@ theme_gtsummary_language(language = "pt") # traduzir
 
 tab_desc <- analytical %>%
   # select
-  select(-id, ) %>%
+  select(-id, -event, -time) %>%
   tbl_summary(
     # by = group
   ) %>%
@@ -34,4 +34,3 @@ tab_desc <- analytical %>%
   # modify_header(label ~ "**Características dos pacientes**") %>%
   bold_labels() %>%
   modify_table_styling(columns = "label", align = "c")
-
