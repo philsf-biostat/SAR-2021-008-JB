@@ -35,9 +35,9 @@ data.raw <- data.raw %>%
 
 data.raw <- data.raw %>%
   set_variable_labels(
-    time = "Time to death (days)",
-    sex = "Sex",
-    paricoes = "Number of births",
+    time = "Tempo até o óbito (dias)",
+    sex = "Sexo",
+    paricoes = "Número de parições",
   )
 
 # analytical dataset ------------------------------------------------------
