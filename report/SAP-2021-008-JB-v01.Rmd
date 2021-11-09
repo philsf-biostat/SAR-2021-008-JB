@@ -67,6 +67,8 @@ Determinar o tempo de sobrevida em cativeiro de espécimes capturados pelo progr
 
 ## Hipóteses
 
+N/A
+
 # Dados
 
 ```{r cleaning, include=FALSE}
@@ -94,7 +96,11 @@ A tabela de dados analíticos serão disponibilizados na versão privada do rela
 
 ## Desfechos primário e secundários
 
+O desfecho primário será definido como o tempo até o óbito.
+
 ## Covariáveis
+
+O sexo e o número de parições serão usados como covariáveis na estimativa do tempo até o evento.
 
 # Métodos estatísticos
 
