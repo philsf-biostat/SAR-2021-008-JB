@@ -135,6 +135,11 @@ exato de Fisher.
 
 ### Modelagem estatística
 
+A análise de sobrevida será realizada com o modelo de regressão de sobrevida paramétrico de Weibull.
+Este modelo é capaz de estimar o tempo até o óbito, ajustando o tempo pelo sexo.
+Um tempo de interação entre o número de parições e o sexo será incorporado para eliminar o efeito das parições no sexo masculino.
+O termpo de interação efetivamente implica em multiplicação por zero no caso dos machos, considerando apenas o efeito das parições de fêmeas no tempo de sobrevida.
+
 ## Significância e Intervalos de Confiança
 
 Todas as análises serão realizadas ao nível de significância de 5%.

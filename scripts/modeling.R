@@ -12,31 +12,25 @@ sf.sex <- survfit(Surv(time, event) ~ sex, analytical)
 
 # parametric --------------------------------------------------------------
 
-m.overall <- survreg(Surv(time, event) ~ sex, analytical, dist = "weibull")
-m.f.birth <- survreg(Surv(time, event) ~ paricoes, analytical %>% filter(sex == "F"), dist = "weibull")
+m.sex <- survreg(Surv(time, event) ~ sex, analytical, dist = "weibull")
+m.sex.par <- survreg(Surv(time, event)~ sex + sex:paricoes, analytical, dist = "weibull")
 
 # cox ---------------------------------------------------------------------
 
 # m.overall <- coxph(Surv(time, event) ~ sex, analytical)
-# m.f.birth <- coxph(Surv(time, event) ~ paricoes, analytical %>% filter(sex == "F"))
+# m.f.birth <- coxph(Surv(time, event)~ sex + sex:paricoes, analytical)
 
 # table -------------------------------------------------------------------
 
-tab_inf <- tbl_survfit(
-  list(sf.1, sf.sex),
-  probs = .5,
-  label_header = "**Tempo de sobrevida (dias)**",
-)
-
-tab.overall <- m.overall %>%
+tab_sex <- m.sex %>%
   tbl_regression()
-tab.f.birth <- m.f.birth %>%
+tab_sex.par <- m.sex.par %>%
   tbl_regression()
 
-tab_mod <- tbl_stack(
+tab_mod <- tbl_merge(
   tbls = list(
-    tab.overall,
-    tab.f.birth
+    tab_sex,
+    tab_sex.par
     ),
-  group_header = c("Total", "Fêmeas"),
+  tab_spanner = c("Ajustado por sexo", "Ajustado por sexo e número de parições")
   )
