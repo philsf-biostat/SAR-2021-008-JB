@@ -133,6 +133,8 @@ O termpo de interação efetivamente implica em multiplicação por zero no caso
 O modelo de Cox presume que os riscos de óbito entre machos e fêmeas são proporcionais.
 Este requisito será avaliado por inspeção visual das curvas de sobrevida -- caso as curvas se cruzem, o modelo de Cox será rejeitado e a especificação acima será substituída pelo modelo não paramétrico (estimação de Kaplan-Meier).
 
+Os tempos de sobrevida (em dias) da meia-vida de machos e fêmeas serão extraídos do modelo final, e apresentados com seus respectivos intervalos de confiança.
+
 ## Significância e Intervalos de Confiança
 
 Todas as análises serão realizadas ao nível de significância de 5%.
