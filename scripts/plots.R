@@ -31,7 +31,7 @@ gg.overall <- sf.1 %>%
     # conf.int = TRUE,
   )
 
-gg.sex <- sf.sex %>%
+gg.sex <- sf.sexo %>%
   ggsurvplot(
     palette = ff.pal,
     risk.table = TRUE,
