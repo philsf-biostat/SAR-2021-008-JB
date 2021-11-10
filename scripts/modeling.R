@@ -6,19 +6,29 @@ library(survival)
 
 # non-parametric ----------------------------------------------------------
 
-sf.1 <- survfit(Surv(tempo, obito) ~ 1, analytical)
-sf.sexo <- survfit(Surv(tempo, obito) ~ sexo, analytical)
+# sf.1 <- survfit(Surv(tempo, obito) ~ 1, analytical)
+# sf.sexo <- survfit(Surv(tempo, obito) ~ sexo, analytical)
 # sf.f.birth <- survfit(Surv(tempo, obito) ~ paricoes, analytical %>% filter(sexo == "F"))
 
 # parametric --------------------------------------------------------------
 
-m.sexo <- survreg(Surv(tempo, obito) ~ sexo, analytical, dist = "weibull")
-m.sexo.par <- survreg(Surv(tempo, obito)~ sexo + sexo:paricoes, analytical, dist = "weibull")
+# m.sexo <- survreg(Surv(tempo, obito) ~ sexo, analytical, dist = "weibull")
+# m.sexo.par <- survreg(Surv(tempo, obito)~ sexo + sexo:paricoes, analytical, dist = "weibull")
 
 # cox ---------------------------------------------------------------------
 
-# m.overall <- coxph(Surv(tempo, obito) ~ sexo, analytical)
-# m.f.birth <- coxph(Surv(tempo, obito)~ sexo + sexo:paricoes, analytical)
+m.sexo <- coxph(Surv(tempo, obito) ~ sexo, analytical)
+m.sexo.par <- coxph(Surv(tempo, obito)~ sexo*paricoes, analytical)
+
+newdat <- expand.grid(
+  sexo = levels(analytical$sexo),
+  paricoes = as.character(0:1)
+  )
+newdat <- newdat[-3, ]
+rownames(newdat) <- c("M", "F:0", "F:1")
+
+cxsf <- survfit(m.sexo.par, newdata = newdat, conf.type = "plain")
+s <- summary(cxsf)$table[, 7:9]
 
 # table -------------------------------------------------------------------
 
