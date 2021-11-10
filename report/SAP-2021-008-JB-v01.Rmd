@@ -117,16 +117,11 @@ O tempo até o óbito de metade da amostra (meia-vida na amostra) será estimado
 
 ### Análise descritiva
 
-O perfil epidemiológico dos participantes do estudo será descrito na baseline.
-As características demográficas
-(sexo, idade e IMC)
-e clínicas
-<!-- ( [vars] ) -->
-serão descritas como
+O perfil dos espécimes do estudo será descrito na baseline.
+O sexo e o número de parições serão descritas como
 média (DP)
-<!-- mediana (IIQ) -->
 ou frequência e proporção (%), conforme apropriado.
-As distribuições das caracerísticas dos participantes serão resumidas em tabelas e visualizadas em gráficos exploratórios
+As distribuições das caracerísticas dos espécimes serão resumidas em tabelas e visualizadas em gráficos exploratórios
 
 ### Análise inferencial
 
