@@ -53,11 +53,9 @@ kable(history)
 
 # Lista de abreviaturas
 
-- d: Tamanho de efeito D de Cohen
 - DP: Desvio padrão
 - IC: Intervalo de confiança
-- IIQ: Intervalo Interquartílico
-- IMC: Índice de massa corpórea
+- SMS: Secretaria Municipal de Saúde
 
 # Contexto
 
@@ -77,7 +75,7 @@ source("scripts/input.R", encoding = 'UTF-8')
 
 ## Dados brutos
 
-Dados recebidos com data de entrada e de óbito de espécimes de escorpião capturados pelo programa de vigilância da secretaria Municipal de Saúde de Americana/SP.
+Dados recebidos com data de entrada e de óbito de espécimes de escorpião *Tityus bahiensis* capturados pelo programa de vigilância da secretaria Municipal de Saúde de Americana/SP.
 
 Todos os espécimes foram mantidos em cativeiro até o óbito, portanto nenhuma observação foi censurada.
 O tempo de sobrevida, em dias, foi calculado a partir das datas com acurácia de calendário isto é, levando em conta anos bissextos.
