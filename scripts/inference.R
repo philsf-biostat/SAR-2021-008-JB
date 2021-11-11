@@ -1,43 +1,18 @@
 # setup -------------------------------------------------------------------
-# library(tableone)
-# library(gt)
-# library(gtsummary)
-# library(infer)
+library(survminer)
 
 # tables ------------------------------------------------------------------
 
-# template p-value table
-# tab_inf <- analytical %>%
-#   # select
-#   select(
-#     -id,
-#   ) %>%
-#   tbl_summary(
-#     by = group
-#   ) %>%
-#   # include study N
-#   add_overall() %>%
-#   # pretty format categorical variables
-#   bold_labels() %>%
-#   # bring home the bacon!
-#   add_p(
-#     # use Fisher test (defaults to chi-square)
-#     test = all_categorical() ~ "fisher.test",
-#     # use 3 digits in pvalue
-#     pvalue_fun = function(x) style_pvalue(x, digits = 3)
-#   ) %>%
-#   # bold significant p values
-#   bold_p()
+# tab_inf <- tbl_survfit(
+#   list(sf.1, sf.sexo),
+#   probs = .5,
+#   label_header = "**Tempo de sobrevida (dias)**",
+# )
 
-# Template Cohen's D table (obs: does NOT compute p)
-# tab_inf <- analytical %>%
-#   # select
-#   select(-id, ) %>%
-#   tbl_summary(
-#     by = group
-#   ) %>%
-#   add_difference(
-#     test = all_continuous() ~ "cohens_d",
-#   ) %>%
-#   modify_header(estimate ~ '**d**') %>%
-#   bold_labels()
+# newdat <- expand.grid(sexo = levels(analytical$sexo), paricoes = as.character(0:1))[-3, ]
+# cxsf <- survfit(m.sexo.par, data = analytical, conf.type = "plain", newdata = newdat)
+
+surv_cxsf <- surv_summary(cxsf, data = analytical) %>% tibble()
+
+m_newdat <- newdat[as.character(surv_cxsf$strata), ]
+surv_df <- cbind(surv_cxsf, m_newdat)

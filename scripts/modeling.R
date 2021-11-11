@@ -6,37 +6,41 @@ library(survival)
 
 # non-parametric ----------------------------------------------------------
 
-sf.1 <- survfit(Surv(time, event) ~ 1, analytical)
-sf.sex <- survfit(Surv(time, event) ~ sex, analytical)
-# sf.f.birth <- survfit(Surv(time, event) ~ paricoes, analytical %>% filter(sex == "F"))
+# sf.1 <- survfit(Surv(tempo, obito) ~ 1, analytical)
+# sf.sexo <- survfit(Surv(tempo, obito) ~ sexo, analytical)
+# sf.f.birth <- survfit(Surv(tempo, obito) ~ paricoes, analytical %>% filter(sexo == "F"))
 
 # parametric --------------------------------------------------------------
 
-m.overall <- survreg(Surv(time, event) ~ sex, analytical, dist = "weibull")
-m.f.birth <- survreg(Surv(time, event) ~ paricoes, analytical %>% filter(sex == "F"), dist = "weibull")
+# m.sexo <- survreg(Surv(tempo, obito) ~ sexo, analytical, dist = "weibull")
+# m.sexo.par <- survreg(Surv(tempo, obito)~ sexo + sexo:paricoes, analytical, dist = "weibull")
 
 # cox ---------------------------------------------------------------------
 
-# m.overall <- coxph(Surv(time, event) ~ sex, analytical)
-# m.f.birth <- coxph(Surv(time, event) ~ paricoes, analytical %>% filter(sex == "F"))
+m.sexo <- coxph(Surv(tempo, obito) ~ sexo, analytical)
+m.sexo.par <- coxph(Surv(tempo, obito)~ sexo*paricoes, analytical)
+
+newdat <- expand.grid(
+  sexo = levels(analytical$sexo),
+  paricoes = as.character(0:1)
+  )
+newdat <- newdat[-3, ]
+rownames(newdat) <- c("M", "F:0", "F:1")
+
+cxsf <- survfit(m.sexo.par, newdata = newdat, conf.type = "plain")
+s <- summary(cxsf)$table[, 7:9]
 
 # table -------------------------------------------------------------------
 
-tab_inf <- tbl_survfit(
-  list(sf.1, sf.sex),
-  probs = .5,
-  label_header = "**Tempo de sobrevida (dias)**",
-)
-
-tab.overall <- m.overall %>%
+tab_sexo <- m.sexo %>%
   tbl_regression()
-tab.f.birth <- m.f.birth %>%
+tab_sexo.par <- m.sexo.par %>%
   tbl_regression()
 
-tab_mod <- tbl_stack(
+tab_mod <- tbl_merge(
   tbls = list(
-    tab.overall,
-    tab.f.birth
+    tab_sexo,
+    tab_sexo.par
     ),
-  group_header = c("Total", "Fêmeas"),
+  tab_spanner = c("Ajustado por sexoo", "Ajustado por sexoo e número de parições")
   )

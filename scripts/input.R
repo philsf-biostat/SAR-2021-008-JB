@@ -15,7 +15,7 @@ data.raw <- read_excel("dataset/Planilha bahiensis.xlsx") %>%
 
 data.raw <- data.raw %>%
   rownames_to_column("id") %>%
-  rename(sex = sexo) %>%
+  rename(entrada_d = entrada, obito_d = obito) %>%
   filter() %>%
   select(
     -especime,
@@ -25,18 +25,18 @@ data.raw <- data.raw %>%
 
 data.raw <- data.raw %>%
   mutate(
-    event = 1,
-    time = as.duration(interval(entrada, obito))/ddays(),
-    sex = factor(sex, labels = c("F", "M")),
-    sex = relevel(sex, "M"),
+    obito = 1,
+    tempo = as.duration(interval(entrada_d, obito_d))/ddays(),
+    sexo = factor(sexo, labels = c("F", "M")),
+    sexo = relevel(sexo, "M"),
   )
 
 # labels ------------------------------------------------------------------
 
 data.raw <- data.raw %>%
   set_variable_labels(
-    time = "Tempo até o óbito (dias)",
-    sex = "Sexo",
+    tempo = "Tempo até o óbito (dias)",
+    sexo = "Sexo",
     paricoes = "Número de parições",
   )
 
@@ -46,9 +46,9 @@ analytical <- data.raw %>%
   # select analytic variables
   select(
     id,
-    event,
-    time,
-    sex,
+    obito,
+    tempo,
+    sexo,
     paricoes,
   )
 

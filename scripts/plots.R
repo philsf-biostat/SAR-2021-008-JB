@@ -15,31 +15,44 @@ theme_update(
 
 # plots -------------------------------------------------------------------
 
-# gg <- ggplot(analytical, aes(outcome, fill = group)) +
-#   geom_density( alpha = .8) +
-#   # scale_color_brewer(palette = ff.pal) +
-#   scale_fill_brewer(palette = ff.pal) +
-#   labs()
+# gg.overall <- sf.1 %>%
+#   ggsurvplot(
+#     palette = ff.pal,
+#     risk.table = TRUE,
+#     # cumevents = TRUE,
+#     # pval = TRUE,
+#     surv.median.line = "hv",
+#     # conf.int = TRUE,
+#   )
+# 
+# gg.sex <- sf.sexo %>%
+#   ggsurvplot(
+#     palette = ff.pal,
+#     risk.table = TRUE,
+#     # cumevents = TRUE,
+#     pval = TRUE,
+#     # surv.median.line = "hv",
+#     # conf.int = TRUE,
+#   )
+# gg.sex <- gg.sex$plot +
+#   theme_classic() +
+#   theme(legend.position = "top")
 
-gg.overall <- sf.1 %>%
-  ggsurvplot(
-    palette = ff.pal,
-    risk.table = TRUE,
-    # cumevents = TRUE,
-    # pval = TRUE,
-    surv.median.line = "hv",
-    # conf.int = TRUE,
-  )
-
-gg.sex <- sf.sex %>%
-  ggsurvplot(
-    palette = ff.pal,
-    risk.table = TRUE,
-    # cumevents = TRUE,
-    pval = TRUE,
+gg.surv <- surv_df %>%
+  ggsurvplot_df(
+    # config básica do plot
+    surv.geom = geom_line,
+    color = "sexo",
+    linetype = "paricoes",
+    # config extras (opcionais)
     # surv.median.line = "hv",
+    # risk.table = TRUE,
     # conf.int = TRUE,
+    # identificações
+    xlab = "Tempo (dias)",
+    ylab = "Sobrevida",
+    surv.scale = "percent",
+    # tema visual
+    palette = ff.pal,
+    ggtheme = theme_classic(),
   )
-gg.sex <- gg.sex$plot +
-  theme_classic() +
-  theme(legend.position = "top")
