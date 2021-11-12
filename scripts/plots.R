@@ -49,6 +49,11 @@ gg.tempos <- gg +
   ylab(attr(analytical$tempo, "label")) +
   theme(legend.position = "none")
 
+# EDA - não usada
+# gg + geom_histogram(aes(tempo, fill = sexo), binwidth = 100) +
+#   facet_wrap(~sexo) +
+#   theme(legend.position = "none")
+
 gg.surv <- surv_df %>%
   ggsurvplot_df(
     # config básica do plot
