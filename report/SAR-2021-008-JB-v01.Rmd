@@ -120,7 +120,11 @@ Esta análise foi realizada utilizando-se o software `R` versão `r getRversion(
 
 ```{r desc_datas,}
 datas <- range(data.raw$entrada_d)
-
+tempos <- analytical %>% select(tempo) %>% range()
+tempos_m <- analytical %>% filter(sexo == "M") %>%  pull(tempo) %>% range()
+tempos_f <- analytical %>% filter(sexo == "F") %>%  pull(tempo) %>% range()
+tempo_m_m <- analytical %>% filter(sexo == "M") %>%  pull(tempo) %>% median()
+tempo_m_f <- analytical %>% filter(sexo == "F") %>%  pull(tempo) %>% median()
 ```
 
 Um total de `r nrow(analytical)` espécimes foram recebidos pelo programa de Vigilância Epidemiológica da SMS de Americana/SP entre `r datas[1]` e `r datas[2]` (Tabela 1).
@@ -131,9 +135,13 @@ Duas fêmeas produziram prole no cativeiro, e uma delas o fez duas vezes.
 tab_desc %>%
     as_kable(
     align = "lccc",
-    caption = "**Tabela 1** caption"
+    caption = "**Tabela 1** Caracerísticas dos espécimes de T. bahiensis recebidos pelo Programa de Vigilância Epidemiológica de Americana/SP."
   )
 ```
+
+Os tempos de sobrevida em cativeiro dos escorpiões recebidos variou entre `r tempos[1]` e `r tempos[2]` dias.
+Os tempos de sobrevida dos espécimes machos variaram entre `r tempos_m[1]` e `r tempos_m[2]` dias e das fêmeas `r tempos_f[1]` e `r tempos_f[2]` dias.
+O tempo de sobrevida mediano dos machos foi `r tempo_m_m` e das fêmeas `r tempo_m_f` dias (Figura 1).
 
 ## Análise inferencial
 
