@@ -158,6 +158,11 @@ knitr::include_graphics("../figures/tempo.png", error = FALSE)
 #   )
 ```
 
+```{r fig2, fig.cap="**Figura 2** Sobrevida em cativeiro dos espécimes recebidos pelo Programa de Vigilância Epidemiológica de Americana/SP."}
+# ![Age](../figures/sobrevida.png)
+knitr::include_graphics("../figures/sobrevida.png", error = FALSE)
+```
+
 # Observações e limitações
 
 # Conclusões
