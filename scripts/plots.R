@@ -65,7 +65,7 @@ gg.surv <- surv_df %>%
     # risk.table = TRUE,
     # conf.int = TRUE,
     # identificações
-    xlab = "Tempo (dias)",
+    xlab = attr(analytical$tempo, "label"),
     ylab = "Sobrevida",
     surv.scale = "percent",
     # tema visual
@@ -75,6 +75,4 @@ gg.surv <- surv_df %>%
   theme(
     legend.text = element_text(size = 6),
     legend.title = element_text(size = 7),
-    axis.text = element_text(size = 6),
-    axis.title = element_text(size = 7),
   )
