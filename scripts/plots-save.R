@@ -16,3 +16,4 @@ units <- "cm"
 # ggsave(filename = "figures/km-overall.png", plot = gg.overall$plot, height = height, width = width, units = units)
 # ggsave(filename = "figures/km-sexo.png", plot = gg.sex, height = height, width = width, units = units)
 ggsave(filename = "figures/sobrevida.png", plot = gg.surv, height = height, width = width, units = units)
+ggsave(filename = "figures/tempo.png", plot = gg.tempos, height = height, width = width, units = units)

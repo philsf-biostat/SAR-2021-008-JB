@@ -13,6 +13,11 @@ theme_update(
   legend.position = "top"
 )
 
+gg <- analytical %>%
+  ggplot() +
+  scale_color_brewer(palette = ff.pal) +
+  scale_fill_brewer(palette = ff.pal)
+
 # plots -------------------------------------------------------------------
 
 # gg.overall <- sf.1 %>%
@@ -37,6 +42,12 @@ theme_update(
 # gg.sex <- gg.sex$plot +
 #   theme_classic() +
 #   theme(legend.position = "top")
+
+gg.tempos <- gg +
+  geom_violin(aes(sexo, tempo, fill = sexo)) +
+  xlab(attr(analytical$sexo, "label")) +
+  ylab(attr(analytical$tempo, "label")) +
+  theme(legend.position = "none")
 
 gg.surv <- surv_df %>%
   ggsurvplot_df(
