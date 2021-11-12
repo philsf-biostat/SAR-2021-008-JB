@@ -75,4 +75,6 @@ gg.surv <- surv_df %>%
   theme(
     legend.text = element_text(size = 8),
     legend.title = element_text(size = 8),
+    axis.text = element_text(size = 8),
+    axis.title = element_text(size = 8),
   )
