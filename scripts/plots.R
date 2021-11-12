@@ -44,7 +44,7 @@ gg <- analytical %>%
 #   theme(legend.position = "top")
 
 gg.tempos <- gg +
-  geom_violin(aes(sexo, tempo, fill = sexo)) +
+  geom_boxplot(aes(sexo, tempo, fill = sexo)) +
   xlab(attr(analytical$sexo, "label")) +
   ylab(attr(analytical$tempo, "label")) +
   theme(legend.position = "none")
