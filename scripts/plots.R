@@ -71,4 +71,8 @@ gg.surv <- surv_df %>%
     # tema visual
     palette = ff.pal,
     ggtheme = theme_classic(),
+  ) +
+  theme(
+    legend.text = element_text(size = 8),
+    legend.title = element_text(size = 8),
   )
