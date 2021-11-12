@@ -26,11 +26,13 @@ theme_gtsummary_language(language = "pt") # traduzir
 
 tab_desc <- analytical %>%
   # select
-  select(-id, -obito, -tempo) %>%
+  select(-id, -obito) %>%
   tbl_summary(
-    # by = group
+    by = sexo,
+    # statistic = tempo ~ "{median} ({IQR})",
   ) %>%
   # modify_caption(caption = "**Tabela 1** Características demográficas") %>%
   # modify_header(label ~ "**Características dos pacientes**") %>%
   bold_labels() %>%
+  add_overall() %>%
   modify_table_styling(columns = "label", align = "c")
