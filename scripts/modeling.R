@@ -18,7 +18,7 @@ library(survival)
 # cox ---------------------------------------------------------------------
 
 m.sexo <- coxph(Surv(tempo, obito) ~ sexo, analytical)
-m.sexo.par <- coxph(Surv(tempo, obito)~ sexo*paricoes, analytical)
+m.sexo.par <- coxph(Surv(tempo, obito)~ sexo + paricoes, analytical)
 
 newdat <- expand.grid(
   sexo = levels(analytical$sexo),
@@ -35,7 +35,7 @@ s <- summary(cxsf)$table[, 7:9]
 tab_sexo <- m.sexo %>%
   tbl_regression(exp = TRUE)
 tab_sexo.par <- m.sexo.par %>%
-  tbl_regression(exp = TRUE, include = c(sexo, paricoes))
+  tbl_regression(exp = TRUE)
 
 tab_mod <- tbl_merge(
   tbls = list(
