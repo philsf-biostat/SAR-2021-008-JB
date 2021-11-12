@@ -33,14 +33,14 @@ s <- summary(cxsf)$table[, 7:9]
 # table -------------------------------------------------------------------
 
 tab_sexo <- m.sexo %>%
-  tbl_regression()
+  tbl_regression(exp = TRUE)
 tab_sexo.par <- m.sexo.par %>%
-  tbl_regression()
+  tbl_regression(exp = TRUE, include = c(sexo, paricoes))
 
 tab_mod <- tbl_merge(
   tbls = list(
     tab_sexo,
     tab_sexo.par
     ),
-  tab_spanner = c("Ajustado por sexoo", "Ajustado por sexoo e número de parições")
+  tab_spanner = c("**Ajustado por sexo**", "**Ajustado por sexo e número de parições**")
   )
