@@ -148,6 +148,17 @@ knitr::include_graphics("../figures/tempo.png", error = FALSE)
 
 ## Prognóstico dos espécimes em cativeiro
 
+```{r}
+# coxph(formula = Surv(tempo, obito) ~ 1, data = analytical) %>% survfit()
+      # n events median 0.95LCL 0.95UCL
+# [1,] 18     18    285     203     365
+```
+
+O tempo de meia-vida em cativeiro dos escorpiões recebidos foi 285 (IC: 203 até 365) dias.
+
+<!-- As fêmeas exibiram risco três vezes maior que os machos com HR `r inline_text(tab_sexo, variable = sexo, level = "F", digits = 1)`. -->
+<!-- Corrigindo pelas parições observadas o risco é quatro vezes maior, com HR ajustada `r inline_text(tab_sexo.par, variable = sexo, level = "F", digits = 1)`. -->
+
 ```{r tab_mod}
 # tab_mod %>%
 #     as_kable(
