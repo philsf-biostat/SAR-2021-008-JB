@@ -128,7 +128,7 @@ tempo_m_f <- analytical %>% filter(sexo == "F") %>%  pull(tempo) %>% median()
 ```
 
 Um total de `r nrow(analytical)` espécimes foram recebidos pelo programa de Vigilância Epidemiológica da SMS de Americana/SP entre `r datas[1]` e `r datas[2]` (Tabela 1).
-Destes `r inline_text(tab_desc, variable = "sexo", level = "M")` eram machos e `r inline_text(tab_desc, variable = "sexo", level = "F")` fêmeas.
+Destes 6 (`r format.pct(6/18, 0)`) eram machos e 12 (`r format.pct(12/18, 0)`) fêmeas.
 Duas fêmeas produziram prole no cativeiro, e uma delas o fez duas vezes.
 
 ```{r tab_desc}
