@@ -114,6 +114,15 @@ Esta análise foi realizada utilizando-se o software `R` versão `r getRversion(
 
 ## População do estudo e acompanhamento
 
+```{r desc_datas,}
+datas <- range(data.raw$entrada_d)
+
+```
+
+Um total de `r nrow(analytical)` espécimes foram recebidos pelo programa de Vigilância Epidemiológica da SMS de Americana/SP entre `r datas[1]` e `r datas[2]` (Tabela 1).
+Destes `r inline_text(tab_desc, variable = "sexo", level = "M")` eram machos e `r inline_text(tab_desc, variable = "sexo", level = "F")` fêmeas.
+Duas fêmeas produziram prole no cativeiro, e uma delas o fez duas vezes.
+
 ```{r tab_desc}
 tab_desc %>%
     as_kable(
