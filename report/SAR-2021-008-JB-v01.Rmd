@@ -99,9 +99,7 @@ ou frequência e proporção (%), conforme apropriado.
 As distribuições das características dos espécimes foram resumidas em tabelas e visualizadas em gráficos exploratórios.
 
 A análise de sobrevida foi realizada com o modelo de regressão de sobrevida semi-paramétrico de Cox.
-Este modelo é capaz de estimar o tempo até o óbito, ajustando o tempo pelo sexo.
-Um termo de interação entre o número de parições e o sexo foi incorporado para eliminar o efeito das parições no sexo masculino.
-O termo de interação efetivamente implica em multiplicação por zero no caso dos machos, considerando apenas o efeito das parições de fêmeas no tempo de sobrevida.
+Este modelo é capaz de estimar o tempo até o óbito, ajustando o tempo pelo sexo e número de parições.
 
 O modelo de Cox presume que os riscos de óbito entre machos e fêmeas são proporcionais.
 Este requisito foi avaliado por inspeção visual das curvas de sobrevida -- como as curvas não se cruzam, o modelo de Cox foi usado conforme a especificação descrita no plano analítico e não houve necessidade de usar um modelo não paramétrico (estimação de Kaplan-Meier).
@@ -148,7 +146,16 @@ O tempo de sobrevida mediano dos machos foi `r tempo_m_m` e das fêmeas `r tempo
 knitr::include_graphics("../figures/tempo.png", error = FALSE)
 ```
 
-## Análise inferencial
+## Prognóstico dos espécimes em cativeiro
+
+```{r}
+# coxph(formula = Surv(tempo, obito) ~ 1, data = analytical) %>% survfit()
+      # n events median 0.95LCL 0.95UCL
+# [1,] 18     18    285     203     365
+```
+
+O tempo de meia-vida em cativeiro dos escorpiões recebidos foi 285 (IC: 203 até 365) dias.
+O tempo de meia-vida dos machos foi `r s[1,1]` dias e das fêmeas `r s[2,1]` dias (Tabela 2).
 
 ```{r tab_inf}
 # tab_inf %>%
@@ -158,12 +165,28 @@ knitr::include_graphics("../figures/tempo.png", error = FALSE)
 #   )
 ```
 
+A figura 1 mostra as curvas de sobrevida de machos, fêmeas com 0 parições e fêmeas com uma parição.
+De acordo com o modelo ajustado, fêmeas que tiveram uma parição podem ter um prognóstico mais favorável em cativeiro, com um acréscimo de sobrevida estimado em torno de 40 dias (`r s[3, 1]` dias, IC: `r format.interval(s[3, 2:3], 0)`).
+
 ```{r fig2, fig.cap="**Figura 2** Sobrevida em cativeiro dos espécimes recebidos pelo Programa de Vigilância Epidemiológica de Americana/SP."}
 # ![Age](../figures/sobrevida.png)
 knitr::include_graphics("../figures/sobrevida.png", error = FALSE)
 ```
 
+<!-- As fêmeas exibiram risco três vezes maior que os machos com HR `r inline_text(tab_sexo, variable = sexo, level = "F", digits = 1)`. -->
+<!-- Corrigindo pelas parições observadas o risco é quatro vezes maior, com HR ajustada `r inline_text(tab_sexo.par, variable = sexo, level = "F", digits = 1)`. -->
+
+```{r tab_mod}
+# tab_mod %>%
+#     as_kable(
+#     align = "lccc",
+#     caption = "**Tabela 2** caption"
+#   )
+```
+
 # Observações e limitações
+
+Embora o número de parições tenha contribuído para um melhor ajuste do tempo de sobrevida, a amostra de estudo era pequena e o termo de interação entre sexo e número de parições não foi incluído no modelo final.
 
 # Conclusões
 
