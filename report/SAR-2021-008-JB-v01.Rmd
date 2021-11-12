@@ -155,25 +155,29 @@ knitr::include_graphics("../figures/tempo.png", error = FALSE)
 ```
 
 O tempo de meia-vida em cativeiro dos escorpiões recebidos foi 285 (IC: 203 até 365) dias.
+O tempo de meia-vida dos machos foi `r s[1,1]` dias e das fêmeas `r s[2,1]` dias (Tabela 2).
 
-<!-- As fêmeas exibiram risco três vezes maior que os machos com HR `r inline_text(tab_sexo, variable = sexo, level = "F", digits = 1)`. -->
-<!-- Corrigindo pelas parições observadas o risco é quatro vezes maior, com HR ajustada `r inline_text(tab_sexo.par, variable = sexo, level = "F", digits = 1)`. -->
-
-```{r tab_mod}
-# tab_mod %>%
+```{r tab_inf}
+# tab_inf %>%
 #     as_kable(
 #     align = "lccc",
 #     caption = "**Tabela 2** caption"
 #   )
 ```
 
+A figura 1 mostra as curvas de sobrevida de machos, fêmeas com 0 parições e fêmeas com uma parição.
+De acordo com o modelo ajustado, fêmeas que tiveram uma parição podem ter um prognóstico mais favorável em cativeiro, com um acréscimo de sobrevida estimado em torno de 40 dias (`r s[3, 1]` dias, IC: `r format.interval(s[3, 2:3], 0)`).
+
 ```{r fig2, fig.cap="**Figura 2** Sobrevida em cativeiro dos espécimes recebidos pelo Programa de Vigilância Epidemiológica de Americana/SP."}
 # ![Age](../figures/sobrevida.png)
 knitr::include_graphics("../figures/sobrevida.png", error = FALSE)
 ```
 
-```{r tab_inf}
-# tab_inf %>%
+<!-- As fêmeas exibiram risco três vezes maior que os machos com HR `r inline_text(tab_sexo, variable = sexo, level = "F", digits = 1)`. -->
+<!-- Corrigindo pelas parições observadas o risco é quatro vezes maior, com HR ajustada `r inline_text(tab_sexo.par, variable = sexo, level = "F", digits = 1)`. -->
+
+```{r tab_mod}
+# tab_mod %>%
 #     as_kable(
 #     align = "lccc",
 #     caption = "**Tabela 2** caption"
