@@ -36,7 +36,7 @@ panderOptions('table.split.table', 160)
 
 ---
 
-Prognóstico de sobrevida em cativeiro de Tityus bahiensis capturados em Americana/SP
+**Prognóstico de sobrevida em cativeiro de Tityus bahiensis capturados em Americana/SP**
 
 **Histórico do documento**
 
@@ -53,6 +53,10 @@ kable(history)
 
 # Lista de abreviaturas
 
+- DP: Desvio padrão
+- IC: Intervalo de confiança
+- SMS: Secretaria Municipal de Saúde
+
 # Contexto
 
 ## Objetivos
@@ -60,6 +64,14 @@ kable(history)
 Determinar o tempo de sobrevida em cativeiro de espécimes capturados pelo programa de Vigilância Epidemiológica da SMS de Americana/SP.
 
 ## Recepção e tratamento dos dados
+
+Dados recebidos com data de entrada e de óbito de espécimes de escorpião *Tityus bahiensis* capturados pelo programa de vigilância da secretaria Municipal de Saúde de Americana/SP.
+
+Todos os espécimes foram mantidos em cativeiro até o óbito, portanto nenhuma observação foi censurada.
+O tempo de sobrevida, em dias, foi calculado a partir das datas com acurácia de calendário isto é, levando em conta anos bissextos.
+
+Duas fêmeas tiveram número de parições maior que zero registrado.
+O número de parições de todos os outros espécimes foi definido como zero, de modo que esta contagem pudesse ser usada como covariável no prognóstico.
 
 # Metodologia
 
@@ -71,9 +83,34 @@ source("scripts/results.R", encoding = 'UTF-8')
 
 ### Desfechos primário e secundário
 
+O desfecho primário foi definido como o tempo, em dias, até o óbito.
+
 ### Covariáveis
 
+O sexo e o número de parições foram usados como covariáveis na estimativa do tempo até o óbito.
+O tempo até o óbito de metade da amostra (meia-vida na amostra) foi estimado separadamente para machos e fêmeas, e ajustado pelo número de parições das fêmeas.
+
 ## Análises Estatísticas
+
+O perfil dos espécimes do estudo foi descrito na baseline.
+O sexo e o número de parições foram descritas como
+média (DP)
+ou frequência e proporção (%), conforme apropriado.
+As distribuições das características dos espécimes foram resumidas em tabelas e visualizadas em gráficos exploratórios.
+
+A análise de sobrevida foi realizada com o modelo de regressão de sobrevida semi-paramétrico de Cox.
+Este modelo é capaz de estimar o tempo até o óbito, ajustando o tempo pelo sexo.
+Um termo de interação entre o número de parições e o sexo foi incorporado para eliminar o efeito das parições no sexo masculino.
+O termo de interação efetivamente implica em multiplicação por zero no caso dos machos, considerando apenas o efeito das parições de fêmeas no tempo de sobrevida.
+
+O modelo de Cox presume que os riscos de óbito entre machos e fêmeas são proporcionais.
+Este requisito foi avaliado por inspeção visual das curvas de sobrevida -- como as curvas não se cruzam, o modelo de Cox foi usado conforme a especificação descrita no plano analítico e não houve necessidade de usar um modelo não paramétrico (estimação de Kaplan-Meier).
+
+Os tempos de sobrevida (em dias) da meia-vida de machos e fêmeas foram extraídos do modelo final, e apresentados com seus respectivos intervalos de confiança.
+
+Todas as análises foram realizadas ao nível de significância de 5%.
+Todos os testes de hipóteses e intervalos de confiança calculados foram
+bicaudais.
 
 Esta análise foi realizada utilizando-se o software `R` versão `r getRversion()`.
 
@@ -81,22 +118,49 @@ Esta análise foi realizada utilizando-se o software `R` versão `r getRversion(
 
 ## População do estudo e acompanhamento
 
+```{r desc_datas,}
+datas <- range(data.raw$entrada_d)
+tempos <- analytical %>% select(tempo) %>% range()
+tempos_m <- analytical %>% filter(sexo == "M") %>%  pull(tempo) %>% range()
+tempos_f <- analytical %>% filter(sexo == "F") %>%  pull(tempo) %>% range()
+tempo_m_m <- analytical %>% filter(sexo == "M") %>%  pull(tempo) %>% median()
+tempo_m_f <- analytical %>% filter(sexo == "F") %>%  pull(tempo) %>% median()
+```
+
+Um total de `r nrow(analytical)` espécimes foram recebidos pelo programa de Vigilância Epidemiológica da SMS de Americana/SP entre `r datas[1]` e `r datas[2]` (Tabela 1).
+Destes 6 (`r format.pct(6/18, 0)`) eram machos e 12 (`r format.pct(12/18, 0)`) fêmeas.
+Duas fêmeas produziram prole no cativeiro, e uma delas o fez duas vezes.
+
 ```{r tab_desc}
 tab_desc %>%
     as_kable(
     align = "lccc",
-    caption = "**Tabela 1** caption"
+    caption = "**Tabela 1** Caracerísticas dos espécimes de T. bahiensis recebidos pelo Programa de Vigilância Epidemiológica de Americana/SP."
   )
+```
+
+Os tempos de sobrevida em cativeiro dos escorpiões recebidos variou entre `r tempos[1]` e `r tempos[2]` dias.
+Os tempos de sobrevida dos espécimes machos variaram entre `r tempos_m[1]` e `r tempos_m[2]` dias e das fêmeas `r tempos_f[1]` e `r tempos_f[2]` dias.
+O tempo de sobrevida mediano dos machos foi `r tempo_m_m` e das fêmeas `r tempo_m_f` dias (Figura 1).
+
+```{r fig1, fig.cap="**Figura 1** Distribuição dos tempos de sobrevida na população do estudo."}
+# ![Age](../figures/tempo.png)
+knitr::include_graphics("../figures/tempo.png", error = FALSE)
 ```
 
 ## Análise inferencial
 
 ```{r tab_inf}
-tab_inf %>%
-    as_kable(
-    align = "lccc",
-    caption = "**Tabela 2** caption"
-  )
+# tab_inf %>%
+#     as_kable(
+#     align = "lccc",
+#     caption = "**Tabela 2** caption"
+#   )
+```
+
+```{r fig2, fig.cap="**Figura 2** Sobrevida em cativeiro dos espécimes recebidos pelo Programa de Vigilância Epidemiológica de Americana/SP."}
+# ![Age](../figures/sobrevida.png)
+knitr::include_graphics("../figures/sobrevida.png", error = FALSE)
 ```
 
 # Observações e limitações
@@ -110,12 +174,7 @@ tab_inf %>%
 
 # Apêndice
 
-## Análise exploratória de dados
-
-```{r A1, fig.cap="**Figura A1** Distribuição da idade na população do estudo."}
-# ![Age](../figures/distr_age.png)
-# knitr::include_graphics("../figures/distr_age.png", error = FALSE)
-```
+<!-- ## Análise exploratória de dados -->
 
 ## Disponibilidade
 

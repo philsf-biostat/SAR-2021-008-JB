@@ -13,6 +13,11 @@ theme_update(
   legend.position = "top"
 )
 
+gg <- analytical %>%
+  ggplot() +
+  scale_color_brewer(palette = ff.pal) +
+  scale_fill_brewer(palette = ff.pal)
+
 # plots -------------------------------------------------------------------
 
 # gg.overall <- sf.1 %>%
@@ -38,6 +43,17 @@ theme_update(
 #   theme_classic() +
 #   theme(legend.position = "top")
 
+gg.tempos <- gg +
+  geom_boxplot(aes(sexo, tempo, fill = sexo)) +
+  xlab(attr(analytical$sexo, "label")) +
+  ylab(attr(analytical$tempo, "label")) +
+  theme(legend.position = "none")
+
+# EDA - não usada
+# gg + geom_histogram(aes(tempo, fill = sexo), binwidth = 100) +
+#   facet_wrap(~sexo) +
+#   theme(legend.position = "none")
+
 gg.surv <- surv_df %>%
   ggsurvplot_df(
     # config básica do plot
@@ -49,10 +65,14 @@ gg.surv <- surv_df %>%
     # risk.table = TRUE,
     # conf.int = TRUE,
     # identificações
-    xlab = "Tempo (dias)",
+    xlab = attr(analytical$tempo, "label"),
     ylab = "Sobrevida",
     surv.scale = "percent",
     # tema visual
     palette = ff.pal,
     ggtheme = theme_classic(),
+  ) +
+  theme(
+    legend.text = element_text(size = 6),
+    legend.title = element_text(size = 7),
   )
