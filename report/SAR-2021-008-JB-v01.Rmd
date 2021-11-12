@@ -143,6 +143,11 @@ Os tempos de sobrevida em cativeiro dos escorpiões recebidos variou entre `r te
 Os tempos de sobrevida dos espécimes machos variaram entre `r tempos_m[1]` e `r tempos_m[2]` dias e das fêmeas `r tempos_f[1]` e `r tempos_f[2]` dias.
 O tempo de sobrevida mediano dos machos foi `r tempo_m_m` e das fêmeas `r tempo_m_f` dias (Figura 1).
 
+```{r fig1, fig.cap="**Figura 1** Distribuição dos tempos de sobrevida na população do estudo."}
+# ![Age](../figures/tempo.png)
+knitr::include_graphics("../figures/tempo.png", error = FALSE)
+```
+
 ## Análise inferencial
 
 ```{r tab_inf}
@@ -164,12 +169,7 @@ O tempo de sobrevida mediano dos machos foi `r tempo_m_m` e das fêmeas `r tempo
 
 # Apêndice
 
-## Análise exploratória de dados
-
-```{r A1, fig.cap="**Figura A1** Distribuição da idade na população do estudo."}
-# ![Age](../figures/distr_age.png)
-# knitr::include_graphics("../figures/distr_age.png", error = FALSE)
-```
+<!-- ## Análise exploratória de dados -->
 
 ## Disponibilidade
 
