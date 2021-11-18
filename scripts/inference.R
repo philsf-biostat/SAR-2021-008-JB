@@ -6,7 +6,7 @@ library(survminer)
 # tab_inf <- tbl_survfit(
 #   list(sf.1, sf.sexo),
 #   probs = .5,
-#   label_header = "**Tempo de sobrevida (dias)**",
+#   label_header = "**Tempo de meia-vida (dias)**",
 # )
 
 # newdat <- expand.grid(sexo = levels(analytical$sexo), paricoes = as.character(0:1))[-3, ]
