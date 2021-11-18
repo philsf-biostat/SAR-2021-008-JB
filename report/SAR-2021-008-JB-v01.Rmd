@@ -155,14 +155,18 @@ knitr::include_graphics("../figures/tempo.png", error = FALSE)
 ```
 
 O tempo de meia-vida em cativeiro dos escorpiões recebidos foi 285 (IC: 203 até 365) dias.
-O tempo de meia-vida dos machos foi `r s[1,1]` dias e das fêmeas `r s[2,1]` dias (Tabela 2).
+O tempo de meia-vida dos machos foi `r s[1,1]` dias
+<!-- (IC: `r format.interval(s[1, 2:3], 0)` dias) -->
+e das fêmeas `r s[2,1]` dias
+<!-- (IC: `r format.interval(s[2, 2:3], 0)` dias) -->
+(Tabela 2).
 
 ```{r tab_inf}
-# tab_inf %>%
-#     as_kable(
-#     align = "lccc",
-#     caption = "**Tabela 2** caption"
-#   )
+tab_inf %>%
+    as_kable(
+    align = "lccc",
+    caption = "**Tabela 2** Prognóstico do tempo de meia-vida de T. bahiensis em cativeiro.\n Números em parênteses indicam Intervalos de 95% Confiança."
+  )
 ```
 
 A figura 1 mostra as curvas de sobrevida de machos, fêmeas com 0 parições e fêmeas com uma parição.
