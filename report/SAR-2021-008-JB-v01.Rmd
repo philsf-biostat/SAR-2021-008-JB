@@ -190,7 +190,7 @@ knitr::include_graphics("../figures/sobrevida.png", error = FALSE)
 
 # Observações e limitações
 
-Embora o número de parições tenha contribuído para um melhor ajuste do tempo de sobrevida, a amostra de estudo era pequena e o termo de interação entre sexo e número de parições não foi incluído no modelo final.
+Embora o número de parições tenha contribuído para um melhor ajuste do tempo de sobrevida, a amostra de estudo era pequena e o termo de interação planejado (**SAP-2021-008-JB-v01**) entre o sexo e o número de parições não foi incluído no modelo final.
 
 # Conclusões
 
